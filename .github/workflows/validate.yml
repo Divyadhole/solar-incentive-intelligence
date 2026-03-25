@@ -1,0 +1,44 @@
+name: Solar Incentive Analysis Validation
+
+on: [push]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pandas numpy scipy matplotlib seaborn openpyxl requests
+
+      - name: Validate data layer
+        run: |
+          python -c "
+          from src.fetch_data import _embedded_eia_rates, fetch_nrel_solar_resource, get_state_incentives
+          rates = _embedded_eia_rates()
+          assert len(rates) == 51, f'Expected 51 states, got {len(rates)}'
+          az = rates[rates['state']=='AZ']['rate_cents_kwh'].values[0]
+          assert 8 < az < 15, f'AZ rate out of range: {az}'
+          print(f'✓ EIA: 51 states, AZ={az}¢/kWh')
+          solar = fetch_nrel_solar_resource()
+          assert len(solar) >= 50
+          az_cf = solar[solar['state']=='AZ']['capacity_factor'].values[0]
+          assert 0.18 < az_cf < 0.22, f'AZ CF out of range: {az_cf}'
+          print(f'✓ NREL: {len(solar)} states, AZ CF={az_cf:.3f}')
+          "
+
+      - name: Validate economics model
+        run: |
+          python -c "
+          from src.solar_economics import compute_state_economics
+          df = compute_state_economics()
+          assert len(df) >= 40, f'Too few states: {len(df)}'
+          az = df[df['state']=='AZ'].iloc[0]
+          assert az['irr'] > 0.10, f'AZ IRR too low: {az[\"irr\"]:.3f}'
+          assert az['composite_score'] > 40, f'AZ score too low: {az[\"composite_score\"]}'
+          hi = df[df['state']=='HI'].iloc[0]
+          assert hi['irr'] > 0.30, f'HI IRR should be very high: {hi[\"irr\"]:.3f}'
+          print(f'✓ AZ: rank #{int(az[\"rank\"])}, IRR={az[\"irr\"]*100:.1f}%')
+          print(f'✓ HI: IRR={hi[\"irr\"]*100:.1f}% (highest)')
+          "
