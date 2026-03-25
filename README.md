@@ -7,9 +7,15 @@
 [![DSIRE](https://img.shields.io/badge/Data-DSIRE%20Incentives-green)](https://www.dsireusa.org/)
 [![CI](https://github.com/Divyadhole/solar-incentive-intelligence/workflows/Solar%20Incentive%20Analysis%20Validation/badge.svg)](https://github.com/Divyadhole/solar-incentive-intelligence/actions)
 
-## Live Dashboard
+## Live Links
 
-**[divyadhole.github.io/solar-incentive-intelligence](https://divyadhole.github.io/solar-incentive-intelligence/)**
+| | Link |
+|---|---|
+| 🌐 **Dashboard** | [divyadhole.github.io/solar-incentive-intelligence](https://divyadhole.github.io/solar-incentive-intelligence/) |
+| 📊 **Solar ROI Calculator** | [divyadhole.github.io/solar-roi-calculator](https://divyadhole.github.io/solar-roi-calculator/) *(companion project)* |
+| ▶ **Interactive ROI App** | [solar-roi-calculator.streamlit.app](https://solar-roi-calculator.streamlit.app) *(run IRR/NPV for any state)* |
+
+The dashboard shows all 50 states ranked by commercial solar economics — EIA rates, NREL solar resource, DSIRE incentives combined into one composite score. Use the companion Solar ROI Calculator to run detailed IRR/NPV analysis on any specific state identified here.
 
 ---
 
@@ -23,9 +29,7 @@ This project runs a standard 100kW commercial solar financial model across every
 
 ---
 
-## Live Dashboard
-
-**[divyadhole.github.io/solar-incentive-intelligence](https://divyadhole.github.io/solar-incentive-intelligence/)**
+## What's in the Dashboard
 
 Six charts covering: state IRR rankings, EIA commercial rates across all 50 states, solar resource vs rate scatter (the sweet spot analysis), composite score ranking, payback distribution, and incentive tier impact.
 
