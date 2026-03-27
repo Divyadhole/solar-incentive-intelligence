@@ -13,7 +13,7 @@
 |---|---|
 | 🌐 **Dashboard** | [divyadhole.github.io/solar-incentive-intelligence](https://divyadhole.github.io/solar-incentive-intelligence/) |
 | 📊 **Solar ROI Calculator** | [divyadhole.github.io/solar-roi-calculator](https://divyadhole.github.io/solar-roi-calculator/) *(companion project)* |
-| ▶ **Interactive ROI App** | [solar-roi-calculator.streamlit.app](https://solar-roi-calculator.streamlit.app) *(run IRR/NPV for any state)* |
+| ▶ **Interactive ROI App** | [solar-roi-calculator.streamlit.app](https://solar-roi-calcu-kvtumqm7wwyyd6hnr4zfoc.streamlit.app) *(run IRR/NPV for any state)* |
 
 The dashboard shows all 50 states ranked by commercial solar economics — EIA rates, NREL solar resource, DSIRE incentives combined into one composite score. Use the companion Solar ROI Calculator to run detailed IRR/NPV analysis on any specific state identified here.
 
